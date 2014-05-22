@@ -1,4 +1,6 @@
-package com.doudou.tian;
+/*
+ */
+package com.doudou.tian.basic;
 
 public class LoadClass {
     public static void main(String args[]){

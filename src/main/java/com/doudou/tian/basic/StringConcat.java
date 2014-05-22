@@ -1,4 +1,4 @@
-package com.doudou.tian;
+package com.doudou.tian.basic;
 
 public class StringConcat {
     public static void main(String[] args){

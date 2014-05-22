@@ -1,4 +1,4 @@
-package com.doudou.tian;
+package com.doudou.tian.basic;
 
 /**
  * Hello world!
