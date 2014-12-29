@@ -9,6 +9,7 @@ public class PhaserTest {
     public static void main(String args[]){
 	ph.arrive();
 	ph.arrive();
+	System.out.println("finished");
     }
 
 }
