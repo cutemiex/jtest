@@ -1,4 +1,4 @@
-package com.doudou.tian.basic;
+package com.tiantiandou.base;
 
 import static org.junit.Assert.*;
 

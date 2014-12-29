@@ -1,4 +1,4 @@
-package com.doudou.tian.concurrent;
+package com.tiantiandou.concurrent;
 
 import static org.junit.Assert.assertTrue;
 
@@ -13,8 +13,8 @@ import java.util.concurrent.TimeoutException;
 
 import org.junit.Test;
 
-import com.tiandoudou.concurrent.CollaborativeTransferQueue;
-import com.tiandoudou.concurrent.lock.LatchDown;
+import com.tiantiandou.concurrent.CollaborativeTransferQueue;
+import com.tiantiandou.concurrent.lock.LatchDown;
 
 public class CollaborativeTransferQueueTest {
 

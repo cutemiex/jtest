@@ -1,4 +1,4 @@
-package com.tiandoudou.concurrent.lock;
+package com.tiantiandou.concurrent.lock;
 
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.locks.AbstractQueuedSynchronizer;

@@ -1,11 +1,11 @@
-package com.doudou.tian.suite;
+package com.tiantiandou.suite;
 
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
 
-import com.doudou.tian.basic.AppTest;
-import com.doudou.tian.basic.GcLogicTest;
-import com.doudou.tian.concurrent.CollaborativeTransferQueueTest;
+import com.tiantiandou.base.AppTest;
+import com.tiantiandou.base.GcLogicTest;
+import com.tiantiandou.concurrent.CollaborativeTransferQueueTest;
 
 @RunWith(Suite.class)
 @Suite.SuiteClasses({
