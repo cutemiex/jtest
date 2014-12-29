@@ -1,0 +1,15 @@
+package com.tiantiandou.serialization;
+
+option java_outer_classname = "UserProto";
+
+message User{
+  message Address {
+    optional int32 id = 1;
+    repeated string address_name=2;
+    required bytes data=3; 
+  }
+
+  required int32 id =1;
+  required string name=2; 
+  repeated Address addresses=3;
+}

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.tiantiandou.database.UserSettingMapper">
+
+	<resultMap id="userSettingResult" type="userSetting"> 
+		<result column="user_id"       property="userId"       jdbcType="VARCHAR" />
+		<result column="app_id"        property="appId"        jdbcType="BIGINT" />
+        <result column="setting_value" property="settingValue" jdbcType="VARCHAR" />
+        <result column="setting_key"   property="settingKey"   jdbcType="VARCHAR" />
+	</resultMap>
+    
+    <select id="selectUserSettingByKey" resultMap="userSettingResult" parameterType="userSetting">
+		select user_id,app_id, setting_value,setting_key
+		from user_setting
+		where user_id = #{userId} 
+		order by id 
+	</select>
+	
+</mapper>
