@@ -1,9 +1,9 @@
-package com.tiantiandou.yasf;
+package com.tiantiandou.yasf.service;
 
 import io.netty.buffer.ByteBuf;
 
-import com.tiantiandou.yasf.message.ByteBufUtil;
 import com.tiantiandou.yasf.message.YasfSerializable;
+import com.tiantiandou.yasf.message.utils.ByteBufUtils;
 
 /***
  * Service的定义 TODO 类说明
@@ -14,20 +14,20 @@ import com.tiantiandou.yasf.message.YasfSerializable;
  */
 public class YasfServiceEntity implements YasfSerializable {
     private static final long serialVersionUID = 6266093305255206065L;
-    private String name;
+    private String name; // 方法全称:com.xxx.xxxx.className
     private String version;
     private String provider;
 
     public void initFrom(ByteBuf buf) {
-        name = ByteBufUtil.readString(buf);
-        version = ByteBufUtil.readString(buf);
-        provider = ByteBufUtil.readString(buf);
+        name = ByteBufUtils.readString(buf);
+        version = ByteBufUtils.readString(buf);
+        provider = ByteBufUtils.readString(buf);
     }
 
     public int fillTo(ByteBuf buf) {
-        int length = ByteBufUtil.writeString(name, buf);
-        length += ByteBufUtil.writeString(version, buf);
-        length += ByteBufUtil.writeString(provider, buf);
+        int length = ByteBufUtils.writeString(name, buf);
+        length += ByteBufUtils.writeString(version, buf);
+        length += ByteBufUtils.writeString(provider, buf);
         return length;
     }
 

@@ -2,6 +2,8 @@ package com.tiantiandou.yasf.message;
 
 import io.netty.buffer.ByteBuf;
 
+import com.tiantiandou.yasf.message.utils.ByteBufUtils;
+
 /****
  * 类说明
  * 
@@ -20,19 +22,19 @@ public class YasfResponse extends AbstractYasfMessage {
     private String resultMessage;
 
     @Override
-    protected int fillBodyTo(ByteBuf buf) {
+    public int fillBodyTo(ByteBuf buf) {
         int length = 0;
-        length += ByteBufUtil.writeBytes(data, buf);
-        length += ByteBufUtil.writeInt(resultCode, buf);
-        length += ByteBufUtil.writeString(resultMessage, buf);
+        length += ByteBufUtils.writeBytes(data, buf);
+        length += ByteBufUtils.writeInt(resultCode, buf);
+        length += ByteBufUtils.writeString(resultMessage, buf);
         return length;
     }
 
     @Override
-    protected void initBodyFrom(ByteBuf buf) {
-        data = ByteBufUtil.readBytes(buf);
-        resultCode = ByteBufUtil.readInt(buf);
-        resultMessage = ByteBufUtil.readString(buf);
+    public void initBodyFrom(ByteBuf buf) {
+        data = ByteBufUtils.readBytes(buf);
+        resultCode = ByteBufUtils.readInt(buf);
+        resultMessage = ByteBufUtils.readString(buf);
     }
 
     public byte[] getData() {

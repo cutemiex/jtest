@@ -2,7 +2,8 @@ package com.tiantiandou.yasf.message;
 
 import io.netty.buffer.ByteBuf;
 
-import com.tiantiandou.yasf.YasfServiceEntity;
+import com.tiantiandou.yasf.message.utils.ByteBufUtils;
+import com.tiantiandou.yasf.service.YasfServiceEntity;
 
 /**
  * 类说明
@@ -13,42 +14,45 @@ import com.tiantiandou.yasf.YasfServiceEntity;
  */
 public class YasfRequest extends AbstractYasfMessage {
     private static final long serialVersionUID = 999483953976788000L;
-    private YasfServiceEntity yasfService;
-    private byte[][] arguments;
+    private YasfServiceEntity serviceEntity;
+    private String methodName;
+    private YasfArgument[] arguments;
     private String sourceIp;
     private String sourceName;
 
     @Override
-    protected int fillBodyTo(ByteBuf buf) {
+    public int fillBodyTo(ByteBuf buf) {
         int length = 0;
-        length += ByteBufUtil.writeObject(yasfService, buf);
-        length += ByteBufUtil.writeByteArray(arguments, buf);
-        length += ByteBufUtil.writeString(sourceIp, buf);
-        length += ByteBufUtil.writeString(sourceName, buf);
+        length += ByteBufUtils.writeObject(serviceEntity, buf);
+        length += ByteBufUtils.writeString(methodName, buf);
+        length += ByteBufUtils.writeObjectArray(arguments, buf);
+        length += ByteBufUtils.writeString(sourceIp, buf);
+        length += ByteBufUtils.writeString(sourceName, buf);
         return length;
     }
 
     @Override
-    protected void initBodyFrom(ByteBuf buf) {
-        yasfService = ByteBufUtil.readObject(YasfServiceEntity.class, buf);
-        arguments = ByteBufUtil.readByteArray(buf);
-        sourceIp = ByteBufUtil.readString(buf);
-        sourceName = ByteBufUtil.readString(buf);
+    public void initBodyFrom(ByteBuf buf) {
+        serviceEntity = ByteBufUtils.readObject(YasfServiceEntity.class, buf);
+        methodName = ByteBufUtils.readString(buf);
+        arguments = ByteBufUtils.readObjectArray(YasfArgument.class, buf);
+        sourceIp = ByteBufUtils.readString(buf);
+        sourceName = ByteBufUtils.readString(buf);
     }
 
-    public YasfServiceEntity getYasfService() {
-        return yasfService;
+    public YasfServiceEntity getYasfServiceEntity() {
+        return serviceEntity;
     }
 
-    public void setYasfService(YasfServiceEntity yasfService) {
-        this.yasfService = yasfService;
+    public void setYasfService(YasfServiceEntity serviceEntity) {
+        this.serviceEntity = serviceEntity;
     }
 
-    public byte[][] getArguments() {
+    public YasfArgument[] getArguments() {
         return arguments;
     }
 
-    public void setArguments(byte[][] arguments) {
+    public void setArguments(YasfArgument[] arguments) {
         this.arguments = arguments;
     }
 
@@ -67,4 +71,13 @@ public class YasfRequest extends AbstractYasfMessage {
     public void setSourceName(String sourceName) {
         this.sourceName = sourceName;
     }
+
+    public String getMethodName() {
+        return methodName;
+    }
+
+    public void setMethodName(String methodName) {
+        this.methodName = methodName;
+    }
+
 }

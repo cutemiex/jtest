@@ -32,7 +32,7 @@ import org.slf4j.LoggerFactory;
 public class NettyServer {
     private static final Logger LOGGER = LoggerFactory.getLogger("NettyServer");
     private static final int SO_BLACKLOG = 100;
-    private static final int DEFAULT_PORT = 10000;
+    private static final int DEFAULT_PORT = 54151;
     private int port;
 
     public NettyServer(int port) {
@@ -44,8 +44,9 @@ public class NettyServer {
         EventLoopGroup workerGroup = new NioEventLoopGroup();
         try {
             ServerBootstrap b = new ServerBootstrap();
-            b.group(bossGroup, workerGroup).channel(NioServerSocketChannel.class).
-                    option(ChannelOption.SO_BACKLOG, SO_BLACKLOG).handler(new LoggingHandler(LogLevel.INFO));
+            b.group(bossGroup, workerGroup).channel(NioServerSocketChannel.class)
+                    .option(ChannelOption.SO_REUSEADDR, true).option(ChannelOption.SO_BACKLOG, SO_BLACKLOG)
+                    .handler(new LoggingHandler(LogLevel.INFO));
             b.childOption(ChannelOption.TCP_NODELAY, true).childHandler(new ChannelInitializer<SocketChannel>() {
                 @Override
                 public void initChannel(SocketChannel ch) throws Exception {

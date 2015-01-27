@@ -9,5 +9,6 @@ package com.tiantiandou.base;
  * @since 2014年12月22日
  */
 public class ApacheCommonsTest {
-
+    public static void main(String[] args){
+    }
 }

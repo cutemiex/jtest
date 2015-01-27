@@ -13,7 +13,6 @@ import java.util.concurrent.TimeoutException;
 
 import org.junit.Test;
 
-import com.tiantiandou.concurrent.CollaborativeTransferQueue;
 import com.tiantiandou.concurrent.lock.LatchDown;
 
 public class CollaborativeTransferQueueTest {

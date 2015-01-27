@@ -35,7 +35,7 @@ public abstract class AbstractYasfMessage implements YasfSerializable {
         return header.fillTo(buf) + fillBodyTo(buf);
     }
 
-    protected abstract int fillBodyTo(ByteBuf buf);
+    public abstract int fillBodyTo(ByteBuf buf);
 
-    protected abstract void initBodyFrom(ByteBuf buf);
+    public abstract void initBodyFrom(ByteBuf buf);
 }

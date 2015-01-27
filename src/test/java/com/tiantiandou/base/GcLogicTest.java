@@ -7,8 +7,6 @@ import java.io.IOException;
 
 import org.junit.Test;
 
-import com.tiantiandou.base.GcLogic;
-
 public class GcLogicTest {
 
     @Test

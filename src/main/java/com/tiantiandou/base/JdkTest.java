@@ -6,7 +6,7 @@ import org.slf4j.LoggerFactory;
 import com.google.caliper.Benchmark;
 
 /***
- * 类说明 JDK 的学些和测试
+ * 类说明 JDK 的学习和测试
  * 
  * @author <a href="mailto:hukui@alibaba-inc.com">hukui</a>
  * @version 1.0

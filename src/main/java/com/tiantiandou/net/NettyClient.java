@@ -44,7 +44,7 @@ public class NettyClient {
     }
 
     public void startup() throws Exception {
-        EventLoopGroup workerGroup = new NioEventLoopGroup();
+        EventLoopGroup workerGroup = new NioEventLoopGroup(1);
         try {
             Bootstrap b = new Bootstrap();
             b.group(workerGroup).channel(NioSocketChannel.class).option(ChannelOption.SO_KEEPALIVE, false)
@@ -56,8 +56,10 @@ public class NettyClient {
                     ch.pipeline().addLast(new ClientRecordDecoderHandler());
                 }
             });
-            ChannelFuture f = b.connect(addr, port).sync();
-            f.channel().closeFuture().sync();
+            ChannelFuture f1 = b.connect(addr, port).sync();
+            ChannelFuture f2 = b.connect(addr, port).sync();
+            f1.channel().closeFuture().sync();
+            f2.channel().closeFuture().sync();
         } finally {
             workerGroup.shutdownGracefully();
         }

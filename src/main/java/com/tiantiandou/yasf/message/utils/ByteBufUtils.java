@@ -1,9 +1,12 @@
-package com.tiantiandou.yasf.message;
+package com.tiantiandou.yasf.message.utils;
 
 import io.netty.buffer.ByteBuf;
 
+import java.lang.reflect.Array;
+
 import com.google.common.base.Charsets;
 import com.google.common.base.Throwables;
+import com.tiantiandou.yasf.message.YasfSerializable;
 
 /***
  * 类说明 读写ByteBuf的一些工具类
@@ -12,12 +15,12 @@ import com.google.common.base.Throwables;
  * @version 1.0
  * @since 2014年12月19日
  */
-public final class ByteBufUtil {
+public final class ByteBufUtils {
     private static final int INT_BYTE_SIZE = 4;
     private static final int LONG_BYTE_SIZE = 8;
     private static final int NULL_OBJECT_SIZE = -1;
 
-    private ByteBufUtil() {
+    private ByteBufUtils() {
 
     }
 
@@ -57,11 +60,11 @@ public final class ByteBufUtil {
 
     public static String readString(ByteBuf buf) {
         byte[] bytes = readBytes(buf);
+        if (bytes == null) {
+            return null;
+        }
         if (bytes.length == 0) {
             return "";
-        }
-        if (bytes.length == NULL_OBJECT_SIZE) {
-            return null;
         }
         return new String(bytes, Charsets.UTF_8);
     }
@@ -135,6 +138,41 @@ public final class ByteBufUtil {
         } else {
             buf.writeInt(1);
             return obj.fillTo(buf) + INT_BYTE_SIZE;
+        }
+    }
+
+    @SuppressWarnings("unchecked")
+    /****
+     * 有强制转换， 从Object到泛型 T
+     * @param clazz
+     * @param buf
+     * @return
+     */
+    public static <T extends YasfSerializable> T[] readObjectArray(Class<T> clazz, ByteBuf buf) {
+        int num = buf.readInt();
+        if (num == NULL_OBJECT_SIZE) {
+            return null;
+        }
+        T[] objs = (T[]) Array.newInstance(clazz, num);
+        for (int i = 0; i < num; i++) {
+            objs[i] = readObject(clazz, buf);
+        }
+        return objs;
+    }
+
+    public static int writeObjectArray(YasfSerializable[] objs, ByteBuf buf) {
+        if (objs == null) {
+            buf.writeInt(NULL_OBJECT_SIZE);
+            return INT_BYTE_SIZE;
+        } else {
+            int total = INT_BYTE_SIZE;
+            buf.writeInt(objs.length);
+            if (objs.length > 0) {
+                for (YasfSerializable t : objs) {
+                    total += writeObject(t, buf);
+                }
+            }
+            return total;
         }
     }
 }

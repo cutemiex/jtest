@@ -7,8 +7,10 @@ import java.util.Arrays;
 
 import junit.framework.TestCase;
 
-import org.apache.commons.lang.ArrayUtils;
+import org.apache.commons.lang3.ArrayUtils;
 import org.junit.Test;
+
+import com.tiantiandou.yasf.message.utils.ByteBufUtils;
 
 /***
  * 
@@ -25,7 +27,7 @@ public class ByteBufUtilTest extends TestCase {
         String value = "I like it";
         byte[] bytes = value.getBytes();
         ByteBuf buf = PooledByteBufAllocator.DEFAULT.heapBuffer();
-        int length = ByteBufUtil.writeBytes(bytes, buf);
+        int length = ByteBufUtils.writeBytes(bytes, buf);
         assertTrue((bytes.length + 4) == length);
         assertTrue(length == buf.readableBytes());
         assertTrue(Arrays.equals(bytes, ArrayUtils.subarray(buf.array(), 4, length)));
@@ -36,9 +38,9 @@ public class ByteBufUtilTest extends TestCase {
         String value = "I like it";
         byte[] bytes = value.getBytes();
         ByteBuf buf = PooledByteBufAllocator.DEFAULT.heapBuffer();
-        ByteBufUtil.writeBytes(bytes, buf);
+        ByteBufUtils.writeBytes(bytes, buf);
 
-        byte[] newBytes = ByteBufUtil.readBytes(buf);
+        byte[] newBytes = ByteBufUtils.readBytes(buf);
         assertTrue(Arrays.equals(newBytes, bytes));
     }
 

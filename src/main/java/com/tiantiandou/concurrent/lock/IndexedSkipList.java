@@ -4,6 +4,15 @@ import java.util.AbstractMap;
 import java.util.Set;
 import java.util.concurrent.ConcurrentMap;
 
+/***
+ * 类说明
+ * 
+ * @param <K> key value
+ * @param <V> vavlue
+ * @author <a href="mailto:hukui@alibaba-inc.com">hukui</a>
+ * @version 1.0
+ * @since 2015年1月8日
+ */
 public class IndexedSkipList<K, V> extends AbstractMap<K, V> implements ConcurrentMap<K, V> {
 
     public V putIfAbsent(K key, V value) {
