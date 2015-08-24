@@ -1,5 +1,7 @@
 package com.tiantiandou.base;
 
+import java.util.Date;
+
 /****
  * 
  * 类说明:
@@ -10,5 +12,8 @@ package com.tiantiandou.base;
  */
 public class ApacheCommonsTest {
     public static void main(String[] args){
+        System.out.println(new Date(1423715637L*1000)); //1422945713169  //1423715623
+        
+        System.out.println(new Date(1423715623L*1000));
     }
 }
