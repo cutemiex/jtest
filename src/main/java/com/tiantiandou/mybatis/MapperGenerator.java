@@ -179,8 +179,8 @@ public class MapperGenerator {
     }
 
     public static void main(String[] args){
-        MapperGenerator generator = new MapperGenerator(ScoreDetail.class);
-        String names ="id,shopId,score,source,time,createTime,modifyTime";
+        MapperGenerator generator = new MapperGenerator(Score.class);
+        String names ="id,shopId,trafficScore,bannerScore,inviteScore,createTime,modifyTime";
         generator.init(Splitter.on(",").omitEmptyStrings().trimResults().splitToList(names));
         generator.generateTable();
         System.out.println("\n\n");
