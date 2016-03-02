@@ -13,6 +13,6 @@ class Test {
     final static String s = "Tommy";
 
     static {
-        System.out.println("Test init");
+        System.out.println("HtmlToImage init");
     }
 }

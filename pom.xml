@@ -156,6 +156,26 @@
             <artifactId>dustpan-common</artifactId>
             <version>4.9.9-SNAPSHOT</version>
         </dependency>
+        <dependency>
+            <groupId>com.dustpan</groupId>
+            <artifactId>dustpan-task</artifactId>
+            <version>4.9.9-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>org.xhtmlrenderer</groupId>
+            <artifactId>flying-saucer-core</artifactId>
+            <version>9.0.8</version>
+        </dependency>
+        <dependency>
+            <groupId>org.jsoup</groupId>
+            <artifactId>jsoup</artifactId>
+            <version>1.8.1</version>
+        </dependency>
+        <dependency>
+            <groupId>net.sf.jtidy</groupId>
+            <artifactId>jtidy</artifactId>
+            <version>r938</version>
+        </dependency>
 
     </dependencies>
 	<build>
